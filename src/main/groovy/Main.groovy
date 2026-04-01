@@ -1,5 +1,7 @@
-package org.example
+import Metodos.Crawler
 
 static void main(String[] args) {
-    println "Hello world!"
+   Crawler c = new Crawler()
+   c.baixarErrosEnvio()
+
 }

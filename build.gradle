@@ -17,6 +17,8 @@ dependencies {
     implementation 'io.github.http-builder-ng:http-builder-ng-apache:1.0.4'
     implementation 'org.slf4j:slf4j-simple:1.7.36'
     implementation 'org.jsoup:jsoup:1.17.2'
+    implementation 'com.sun.mail:jakarta.mail:2.0.1'
+
 
 
 

@@ -47,7 +47,7 @@ class Crawler {
 
 
 
-    void baixarComponentes() {
+    void baixarComponentes(Map<String,String> arquivos) {
 
         String linkPadraoTissAtualizado = paginaHome.select("p.callout > a").first().attr("abs:href")
 
@@ -65,16 +65,16 @@ class Crawler {
 
         }
 
-        Utilitarios.baixarArquivo(listaLinks[0], "Componente_Organizacional_atualizado.pdf", "downloads/componentes/organizacional")
-        Utilitarios.baixarArquivo(listaLinks[1], "Componente_Conteudo_Estrutura.zip", "downloads/componentes/conteudoEestrutura")
-        Utilitarios.baixarArquivo(listaLinks[2], "Representacao_Conceito_Em_Saude.zip", "downloads/componentes/rep.ConceitoSaude")
-        Utilitarios.baixarArquivo(listaLinks[3], "Segurança_Pivacidade.zip", "downloads/componentes/Seguraca_privacidade")
-        Utilitarios.baixarArquivo(listaLinks[4], "Comunicação.zip", "downloads/componentes/comunicacao")
+      if(arquivos.containsKey("Organizacional")) {Utilitarios.baixarArquivo(listaLinks[0], arquivos["Organizacional"]+".pdf", "downloads/componentes/organizacional")}
+        if(arquivos.containsKey("Conteudo e estrutura")) { Utilitarios.baixarArquivo(listaLinks[1], arquivos["Conteudo e estrutura"]+".zip", "downloads/componentes/conteudoEestrutura")}
+        if(arquivos.containsKey("Representação de conceito em saude")) { Utilitarios.baixarArquivo(listaLinks[2], arquivos["Representação de conceito em saude"]+".zip", "downloads/componentes/rep.ConceitoSaude")}
+        if(arquivos.containsKey("Segurança e privacidade")) { Utilitarios.baixarArquivo(listaLinks[3], arquivos["Segurança e privacidade"]+".zip", "downloads/componentes/Seguraca_privacidade")}
+        if(arquivos.containsKey("Comunicação")) { Utilitarios.baixarArquivo(listaLinks[4], arquivos["Comunicação"]+".zip", "downloads/componentes/comunicacao")}
 
 
     }
 
-    void baixarHistoricoVersoes() {
+    void baixarHistoricoVersoes(String nomeArquivo) {
         String linkVersoes = paginaHome.select("div#parent-fieldname-text :nth-child(6) a").attr("abs:href")
         String htmlBrutoVersoes = this.http.get {
             request.uri = linkVersoes
@@ -99,11 +99,11 @@ class Crawler {
 
         }.collect {it[0]}
 
-        Utilitarios.criadorCsv(tabelaFormatada,"Historico_pós_janeiro_2016", "downloads")
+        Utilitarios.criadorCsv(tabelaFormatada,nomeArquivo, "downloads")
 
     }
 
-    void  baixarErrosEnvio (){
+    void  baixarErrosEnvio (String nome){
         String linkTabelasRelacionadas = paginaHome.select("div#parent-fieldname-text :nth-child(8) a").attr("abs:href")
 
         String htmlBrutotabelasRelacionadas = this.http.get{request.uri = linkTabelasRelacionadas}
@@ -112,7 +112,7 @@ class Crawler {
 
         String linkTabelaErros = tabelasRelacionadas.select("a.internal-link").attr("abs:href")
 
-        Utilitarios.baixarArquivo(linkTabelaErros,"tabela_de_erros_de_envio_ANS.xlsx","downloads")
+        Utilitarios.baixarArquivo(linkTabelaErros,nome+".xlsx","downloads")
     }
 
 

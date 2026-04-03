@@ -16,6 +16,7 @@ Sistema de automação desenvolvido em **Groovy** para captura de dados regulat�
 - **Parser HTML:** JSoup
 - **E-mail:** Jakarta Mail
 - **Persistência:** JSON (para gestão de e-mails)
+- **Testes:** JUnit 5
 
 ##  Configuração e Variáveis de Ambiente
 

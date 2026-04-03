@@ -3,15 +3,23 @@ package Metodos
 import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper
 
+import java.nio.file.Path
+
 class JsonControler {
 
-    static void salvarEmails(Map<String, String> mapaEmails ) {
+    static void salvarEmails(Map<String, String> mapaEmails, Path local = null ) {
 
 
+        File arquivo
 
-        String raizDoProjeto = "../../../"
+        if (local) {
 
-        File arquivo = new File((raizDoProjeto as String)+"emails.json")
+            arquivo = local.resolve("emails.json").toFile()
+        } else {
+
+            String raizDoProjeto = "../../../"
+            arquivo = new File(raizDoProjeto + "emails.json")
+        }
 
 
 
@@ -20,11 +28,16 @@ class JsonControler {
         }
     }
 
-    static Map capturarEmails(){
+    static Map capturarEmails(Path local=null){
 
-        String raizDoProjeto = "../../../"
+        File arquivo
 
-        File arquivo = new File((raizDoProjeto as String)+"emails.json")
+        if (local) {
+
+            arquivo = local.resolve("emails.json").toFile()
+        } else {
+            arquivo = new File("../../../emails.json")
+        }
 
         if (!arquivo.exists()) {
             return [:]

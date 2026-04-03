@@ -93,8 +93,20 @@ class Utilitarios {
 
     }
 
-    static File ziparPasta(Path pastaOrigem) {
-        Path caminhoDestino = Paths.get("").toAbsolutePath().resolve("../../../pacote_completo_ans.zip")
+    static File ziparPasta(Path pastaOrigem, Path destino=null) {
+
+        Path caminhoDestino
+
+        if(destino){
+            caminhoDestino = destino.resolve("pacote_completo_ans.zip")
+        }
+
+        else{
+            caminhoDestino = Paths.get("").toAbsolutePath().resolve("../../../pacote_completo_ans.zip")
+
+        }
+
+
         File arquivoZipFinal = caminhoDestino.toFile()
 
 

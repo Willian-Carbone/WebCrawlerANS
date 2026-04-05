@@ -75,7 +75,7 @@ static void main(String[] args) {
                 println("Nenhum dowload foi feito, faça algum antes de mandar para os emails interessados")
             } else {
                 Map emails = JsonControler.capturarEmails()
-                if(!emails){
+                if(!emails.size()==1){
                     println("Nenhum email registrado,registre pelo menos um email primeiro")
                 }
                 File pastaZipada = Utilitarios.ziparPasta(pastaDownload)

@@ -1,4 +1,5 @@
 # ANS Web Crawler
+Autor:Willian Carbone Bueno
 
 Sistema de automação desenvolvido em **Groovy** para captura de dados regulatórios da Agência Nacional de Saúde Suplementar (ANS), processamento de tabelas TISS e distribuição de relatórios via e-mail.
 

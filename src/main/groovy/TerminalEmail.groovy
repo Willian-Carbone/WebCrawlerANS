@@ -66,7 +66,7 @@ class TerminalEmail {
             }
 
             if(entrada=="2"){
-                println("Insira o identificador da tarefa para edita-la ou sair para cancelar a ação" )
+                println("Insira o identificador  para edita-la ou sair para cancelar a ação" )
                 String identificadorEmail = c.nextLine()
 
                 while(identificadorEmail!="sair" && !emails.containsKey(identificadorEmail)){
@@ -75,11 +75,12 @@ class TerminalEmail {
                 }
 
                 if(identificadorEmail!="sair"){
-                    println("email encontrado  ${emails[entrada]}, digite o novo email ou sair para cancelar ação")
+                    println(" digite o novo email ou sair para cancelar ação")
                     String novoEmail= c.nextLine()
 
                     while (!Utilitarios.validadorEmail(novoEmail) && novoEmail!="sair"){
                         println("Insira um novo email valido ou cancele a ação")
+                        novoEmail= c.nextLine()
 
                     }
 
